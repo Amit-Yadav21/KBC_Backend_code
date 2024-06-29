@@ -20,13 +20,15 @@ const signup = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
+        const hashedadminToken = await bcrypt.hash(adminToken, salt);
+
         const newUser = new Register({
             name,
             email,
             password: hashedPassword,
             mobile_number,
             role,
-            adminToken,
+            adminToken:hashedadminToken,
         });
 
         const result = await newUser.save();
