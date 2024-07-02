@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt';
 import { Register } from '../MongoesSchema/registerSchema.js';
 import { createToken } from '../Midlewere/authentication.js';
-const salt = 10
 
 const signup = async (req, res) => {
     const { name, email, password, mobile_number, role, adminToken } = req.body;
@@ -20,8 +19,7 @@ const signup = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const saltadminToken = await bcrypt.genSalt(5);
-        const hashedadminToken = await bcrypt.hash(adminToken, saltadminToken);
+        const hashedadminToken = await bcrypt.hash(adminToken, salt);
 
         const newUser = new Register({
             name,
