@@ -74,6 +74,20 @@ const getAllUsers = async (req, res) => {
     }
 };
 
+const checkEmailExists = async (req, res) => {
+    const { email } = req.body;
+    try {
+        const user = await Register.findOne({ email });
+        if (user) {
+            return res.status(200).json({ exists: true });
+        }
+        return res.status(200).json({ exists: false });
+    } catch (error) {
+        console.error('Error checking email:', error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+
 // Get login data
 const GetLoginData = async (req, res) => {
     try {
@@ -143,4 +157,4 @@ const logout = (req, res) => {
     }
 };
 
-export { signup, login, getAllUsers, GetLoginData, DeleteUserData, UpdateLoginData, logout };
+export { signup, login, getAllUsers, GetLoginData, checkEmailExists, DeleteUserData, UpdateLoginData, logout };
