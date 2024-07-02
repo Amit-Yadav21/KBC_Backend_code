@@ -20,9 +20,6 @@ const signup = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const salt_adminToken = await bcrypt.genSalt(20);
-        const hashedadminToken = await bcrypt.hash(adminToken, salt_adminToken);
-
         const newUser = new Register({
             name,
             email,
