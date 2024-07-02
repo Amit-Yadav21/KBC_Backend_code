@@ -28,7 +28,7 @@ const signup = async (req, res) => {
             password: hashedPassword,
             mobile_number,
             role,
-            adminToken:hashedadminToken,
+            adminToken: hashedadminToken,
         });
 
         const result = await newUser.save();
