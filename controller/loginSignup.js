@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { Register } from '../MongoesSchema/registerSchema.js';
 import { createToken } from '../Midlewere/authentication.js';
 
